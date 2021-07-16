@@ -11,6 +11,7 @@ int main() {
     int a, b;
     int *pa = &a, *pb = &b;
     
+    printf("digite: ");
     scanf("%d %d", &a, &b);
     update(pa, pb);
     printf("%d\n%d", a, b);
@@ -23,5 +24,5 @@ void update(int *a, int *b)
     int tmp_a = *a;
     int tmp_b = *b;
     *a = tmp_a + tmp_b;
-    *b = ((abs(tmp_a)) - (abs(tmp_b)));
+    *b = abs(tmp_a - tmp_b);
 }
