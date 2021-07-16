@@ -20,14 +20,13 @@ int main(void)
     float float2 = 0;
 
     // Prompt for two floats
-    scanf("%d %d", &int1, &int2);
-    scanf("%f %f", &float1, &float2);
+    scanf("%d %d", &int1, &int2); // Scanf lê do terminal e coloca os valores em variáveis. No caso usamos o & para mostrarmos o caminho
+    scanf("%f %f", &float1, &float2); // Mesma coisa aqui.. O & tá só mostrando o caminho/endereço
 
     int isum = int1 + int2;
     int idiff = int1 - int2; 
     float fsum = float1 + float2;
     float fdiff = float1 - float2; 
-    printf("%d %d\n%.1f %.1f\n", isum, idiff, fsum, fdiff);
-
+    printf("%d %d\n%.1f %.1f\n", isum, idiff, fsum, fdiff); // Aqui o numero de casas decimais que eu quero vem antes do "f" de float
     //TODO: #1 Create comments for these lines
 }
