@@ -20,16 +20,7 @@ int main()
     char* n_str = readline();
     printf("numero ");
     int n = strtol(n_str, &n_endptr, 10);
-    char *words[9];
-    words[0] = "one";
-    words[1] = "two";
-    words[2] = "three";
-    words[3] = "four";
-    words[4] = "five";
-    words[5] = "six";
-    words[6] = "seven";
-    words[7] = "eight";
-    words[8] = "nine";
+    char *words[9] = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
 
     if (n_endptr == n_str || *n_endptr != '\0') { exit(EXIT_FAILURE); }
 
