@@ -15,28 +15,33 @@
 
 void calculate_the_maximum(int n, int k)
 {
-    //Write your code here.
-    int current_pointer = 0;
-    int comp_var = 0;
-    int S[n];
+    int current_pointer = 0; //This will be the index used to identify the first number in the comparison (aka "a")
+    int comp_var = 0;        //This will be the index used to identify the second number in the comparison (aka "b")
+    int S[n];                //The array of numbers used for the comparisons
     int and = 0, or = 0, xor = 0, print_and = 0, print_or = 0, print_xor = 0;
     int and_max = 0, or_max = 0, xor_max = 0;
 
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < n; i++) //Create the array
     {
         S[i] = i + 1;
     }
 
+    //Loop that goes through the numbers comparing each individual case
     while (current_pointer < n)
     {
+        //This updates the pointers.
+        //Important to notice here that every time the current index changes, the comparison also does..
+        //This is because we don't want to compare the numbers that passed already to shun redundancy
         if (comp_var == n)
         {
             current_pointer++;
             comp_var = current_pointer;
         }
 
+        //Different because we don't want to compare the number with itself, only pairs of different ones
         if (current_pointer != comp_var)
         {
+            //Saving the results in temporary values for each one
             and = S[current_pointer] & S[comp_var];
             or = S[current_pointer] | S[comp_var];
             xor = S[current_pointer] ^ S[comp_var];
@@ -54,6 +59,7 @@ void calculate_the_maximum(int n, int k)
                 xor_max = xor;
             }
 
+            //These conditions verify that the results from the bitwise operation is actually in the parameters set in the task
             if (and < k && print_and < and)
             {
                 print_and = and;
@@ -71,6 +77,7 @@ void calculate_the_maximum(int n, int k)
         }
         comp_var++;
     }
+    //Actually printing the values needed for the task
     printf("%d\n%d\n%d\n", print_and, print_or, print_xor);
 }
 
