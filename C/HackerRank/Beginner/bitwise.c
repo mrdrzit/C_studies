@@ -19,7 +19,7 @@ void calculate_the_maximum(int n, int k)
     int comp_var = 0;        //This will be the index used to identify the second number in the comparison (aka "b")
     int S[n];                //The array of numbers used for the comparisons
     int and = 0, or = 0, xor = 0, print_and = 0, print_or = 0, print_xor = 0;
-    int and_max = 0, or_max = 0, xor_max = 0;
+    // int and_max = 0, or_max = 0, xor_max = 0;
 
     for (int i = 0; i < n; i++) //Create the array
     {
@@ -46,33 +46,23 @@ void calculate_the_maximum(int n, int k)
             or = S[current_pointer] | S[comp_var];
             xor = S[current_pointer] ^ S[comp_var];
 
-            if (and_max < and)
-            {
-                and_max = and;
-            }
-            if (or_max < or)
-            {
-                or_max = and;
-            }
-            if (xor_max < xor)
-            {
-                xor_max = xor;
-            }
-
             //These conditions verify that the results from the bitwise operation is actually in the parameters set in the task
             if (and < k && print_and < and)
             {
                 print_and = and;
+                int and_max = and;
             }
 
             if (or < k && print_or < or)
             {
                 print_or = or ;
+                int or_max = and;
             }
 
             if (xor < k && print_xor < xor)
             {
                 print_xor = xor;
+                int xor_max = xor;
             }
         }
         comp_var++;
