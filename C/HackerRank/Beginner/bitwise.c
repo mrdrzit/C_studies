@@ -41,44 +41,32 @@ void calculate_the_maximum(int n, int k)
             or = S[current_pointer] | S[comp_var];
             xor = S[current_pointer] ^ S[comp_var];
 
-            // if (and_max < and)
-            // {
-            //     and_max = and;
-            // }
-            // if (or_max <or)
-            // {
-            //     or_max = and;
-            // }
-            // if (xor_max < xor)
-            // {
-            //     xor_max = xor;
-            // }
+            if (and_max < and)
+            {
+                and_max = and;
+            }
+            if (or_max < or)
+            {
+                or_max = and;
+            }
+            if (xor_max < xor)
+            {
+                xor_max = xor;
+            }
 
-            if (and < k)
+            if (and < k && print_and < and)
             {
                 print_and = and;
             }
-            else
-            {
-                print_and = 0;
-            }
 
-            if (or < k)
+            if (or < k && print_or < or)
             {
                 print_or = or ;
             }
-            else
-            {
-                print_or = 0;
-            }
 
-            if (xor < k)
+            if (xor < k && print_xor < xor)
             {
                 print_xor = xor;
-            }
-            else
-            {
-                print_xor = 0;
             }
         }
         comp_var++;
