@@ -7,6 +7,30 @@
 
 int marks_summation(int* marks, int number_of_students, char gender) {
   //Write your code here.
+
+    int boy = 0;
+    int girl = 0;
+
+    for (int i = 0; i < number_of_students; i++)
+    {
+        if (i % 2 == 0)
+        {
+            boy += marks[i];
+        }
+        else
+        {
+            girl += marks[i];
+        }
+    }
+    
+    if (gender == 'g')
+    {
+        return girl;
+    }
+    else 
+    {
+        return boy;
+    }
 }
 
 int main() {
