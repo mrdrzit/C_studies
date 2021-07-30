@@ -8,22 +8,22 @@
 int sum = 0;
 int find_nth_term(int n, int a, int b, int c)
 {
-    int counter = 0;
+    int array[3]; array[0] = a; array[1] = b; array[2] = c;
+    if (n <= 3)
+    {
+        return array[n-1];
+    }
+
     sum = a + b + c;
 
-    if (counter == (n - 4))
+    if (0 >= (n - 3))
     {
         return sum;
         
     }
-
-    a = b;
-    b = c;
-    c = sum;
     n--;
-    counter++;
 
-    int actual = sum + find_nth_term(n, a, b, c);
+    int actual = sum + find_nth_term(n, b, c, sum);
     return sum;
 }
 
