@@ -29,17 +29,13 @@ int main()
     int subtract = 0; //How much do i need to subtract
     int which = 0; //at which element do i need to start subtracting
 
-    const int n = 4;
+    const int n = 9;
 
-    int line[] = {[0 ... 3] = n};
-    int printing = n;
+    int line[] = {[0 ... 8] = n};
 
     for (int iline = 0; iline < n; iline++)
     {
-        int num_print = (n - iline);
-        which = iline;
-
-        print_line(line, n, subtract, which);
+        print_line(line, n, subtract, iline);
         subtract++;
         which++;
         if (iline == n - 1)
