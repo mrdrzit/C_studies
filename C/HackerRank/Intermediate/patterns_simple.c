@@ -40,30 +40,43 @@ void print_line(int *array, int line_size, int subtract, int which, int stop, in
         }
         printf("%d ", array[i]);
     }
+    // else
+    // {
+    //     for (int i = 0; i < line_size; i++)
+    //     {
+    //         if (i >= which && i < stop)
+    //         {
+    //             array[i] = n - subtract;
+    //         }
+    //     }
+    // }
     printf("\n");
 }
 
 int main()
 {
     int subtract = 0; // How much do i need to subtract
-    int which = 0; // At which element do i need to start subtracting
+    int which = 0;    // At which element do i need to start subtracting
+
 
     const int n = 4;
     const int num_colunas = (n * 2) - 1;
 
     int *line = create_array(num_colunas, n);
     int stop = num_colunas; // At wich element do i need to stop subtracting
+    int *array_placeholder = create_array(num_colunas, n);
 
-    for (int iline = 0; iline < n; iline++)
+    for (int iline = 0; iline < num_colunas; iline++)
     {
         print_line(line, num_colunas, subtract, which, stop, n);
+        
+        // if (which < n)
+        // {
+        //     array_placeholder[0][1] = print_line;
+        // }
         subtract++;
         which++;
         stop--;
-        if (iline == n - 1)
-        {
-            printf("\n");
-        }
     }
     free(line);
     return 0;

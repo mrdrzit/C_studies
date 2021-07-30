@@ -32,7 +32,7 @@ int main()
 
     int line[] = {[0 ... n-1] = n};
     int printing = n;
-    // const int num_lines = (n * 2) - 1;
+    const int num_lines = (n * 2) - 1;
     // scanf("%d", &n);
     // Complete the code to print the pattern.
 
