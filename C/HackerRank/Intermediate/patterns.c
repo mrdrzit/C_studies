@@ -2,7 +2,6 @@
 #include <string.h>
 #include <math.h>
 #include <stdlib.h>
-
 // Print a pattern of numbers from 1 to n as shown below. Each of the numbers is separated by a single space.
 
 //                             4 4 4 4 4 4 4
@@ -13,39 +12,62 @@
 //                             4 3 3 3 3 3 4
 //                             4 4 4 4 4 4 4
 
-//                             4 4 4 4
-//                             4 3 3 3
-//                             4 3 2 2
-//                             4 3 2 1
-
-void print_line(int array[], int line_size)
+int *create_array(int numero_de_elementos, int n)
 {
+    int *array = malloc(numero_de_elementos * sizeof(int));
+
+    for (int i = 0; i < numero_de_elementos; i++)
+    {
+        array[i] = n;
+    }
+    return array;
+}
+
+void print_line(int *array, int line_size, int subtract, int which, int stop, int n)
+{
+
     for (int i = 0; i < line_size; i++)
     {
+        if (i >= which && i < stop)
+        {
+            array[i] = n - subtract;
+        }
         printf("%d ", array[i]);
     }
+    printf("\n");
 }
 
 int main()
 {
-    const int n = 4;
-
-    int line[] = {[0 ... n-1] = n};
-    int printing = n;
-    const int num_lines = (n * 2) - 1;
+    int n = 9;
     // scanf("%d", &n);
+    const int num_colunas = (n * 2) - 1;
+
     // Complete the code to print the pattern.
+    
+    int subtract = 0; // How much do i need to subtract
+    int which = 0;    // At which element do i need to start subtracting
 
-    for (int iline = 0; iline < n; iline++)
+    int *line = create_array(num_colunas, n);
+    int stop = num_colunas; // At wich element do i need to stop subtracting
+
+    for (int iline = 0; iline < num_colunas; iline++)
     {
-        int num_print = (n - iline);
-
-        printf("%d ", n);
-
-        if (iline == n - 1)
+        if (iline < ceil(num_colunas/2))
         {
-            printf("\n");
+            print_line(line, num_colunas, subtract, which, stop, n);
+            
+            subtract++;
+            which++;
+            stop--;
+        }else{
+            print_line(line, num_colunas, subtract, which, stop, n);
+            
+            subtract--;
+            which--;
+            stop++; 
         }
     }
+    free(line);
     return 0;
 }
