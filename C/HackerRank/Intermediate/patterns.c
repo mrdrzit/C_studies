@@ -25,7 +25,6 @@ int *create_array(int numero_de_elementos, int n)
 
 void print_line(int *array, int line_size, int subtract, int which, int stop, int n)
 {
-
     for (int i = 0; i < line_size; i++)
     {
         if (i >= which && i < stop)
