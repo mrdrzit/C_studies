@@ -521,20 +521,11 @@ s = "hello, there"
 #%%
 """ The format statement to modify and work with: """
 #%%
-print("Start||{}||End".format(s))
-#%%
-"""
-Solution:
-"""
 s = "hello, there"
 
+print("Start||{0:>25}||End".format(s))
 
 
-
-
-"""
-End Solution
-"""
 #%%
 
 """
