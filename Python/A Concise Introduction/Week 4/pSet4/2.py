@@ -11,16 +11,15 @@ problem4_2(numList)
 30.81215290541488
 
 """
-#%%
-import random
-numList = []
-random.seed(150)
-for i in range(0,25):
-    numList.append(round(100*random.random(),1))
-#%%   
+
+# import random
+# numList = []
+# random.seed(150)
+# for i in range(0,25):
+#     numList.append(round(100*random.random(),1))
+ 
 def problem4_2(ran_list):
     """ Compute the mean and standard deviation of a list of floats """
     import statistics as math
     print(math.mean(ran_list))
     print(math.stdev(ran_list))
-#%%
