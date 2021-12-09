@@ -28,10 +28,15 @@ def temp_stat(temps):
     """ prints the average, median, std dev, and variance of temps """
     import statistics as math
 
-    tmp_mean = math.mean(temps)
-    tmp_med  = math.median(temps)
-    tmp_dev  = math.stdev(temps)
-    tmp_var  = math.variance(temps)
-    print("Mean: ",tmp_mean,"\n","Median ",tmp_med,"\n","Standard deviation: ",tmp_dev,"\n","Variance: ",tmp_var,"\n",sep='')
+    print(temps)
+    print(math.mean(temps))
+    print(math.median(temps))
+    print(math.stdev(temps))
+    print(math.variance(temps))
+    try:
+        print(math.mode(temps))
+    except Exception as e:
+        print(e)
+    
 
 #%%
