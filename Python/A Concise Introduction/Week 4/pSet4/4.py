@@ -27,7 +27,8 @@ def proper_menu_choice(which):
 
 def reorder_phones():
     global phones       # this insures that we use the one at the top
-    
+    phones.sort()
+    return
 
 def delete_phone(which):
     if not proper_menu_choice(which):
@@ -134,7 +135,7 @@ def main_loop():
             print("which is ", which)
             edit_phone(which)
         elif choice == 'r':
-            which = input("Reordering list")
+            which = "Reordering list"
             print(which)
             reorder_phones()
         else:
