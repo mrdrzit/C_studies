@@ -1,0 +1,7 @@
+Como dito, esse curso tem um livro-texto que você deve ler para consolidar seu aprendizado e que serve também de consulta. A leitura dessa semana é introdutória também:
+
+https://panda.ime.usp.br/aulasPython/static/aulasPython/aula01.html
+
+O índice do livro completo se encontra aqui para referência:
+
+https://panda.ime.usp.br/aulasPython/static/aulasPython/index.html
