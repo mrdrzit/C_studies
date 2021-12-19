@@ -1,4 +1,4 @@
-# C_studies
+# Code_studies
 Code challenges from LeetCode, HackerRank, etc.
 
 ## Still learning
