@@ -21,12 +21,16 @@ function draw() {
   }
 }
 
+// function mousePressed(){
+//   let ball = new Ball(random(30,50));
+//   balls.push(ball);
+// }
+
 class Ball {
   constructor(size) {
     this.pos = createVector(200,200)
+    this.speed = createVector(4,1)
     this.diameter = size;
-    this.speed = 2;
-    this.heading = this.pos.heading(random(0,TWO_PI));
   }
 
   show() {
@@ -34,9 +38,13 @@ class Ball {
   }
 
   move() {
-    this.pos.x = this.pos.x + this.speed;
+    this.pos.add(this.speed);
+    
     if (this.pos.x > width || this.pos.x < 0){
-      this.speed = this.speed * -1;
+      this.speed.x = this.speed.x * -1;
+    }
+    else if (this.pos.y > height || this.pos.y < 0){
+      this.speed.y = this.speed.y * -1;
       fill(random(20,255), random(50,255), random(80,255))
     }
   }
