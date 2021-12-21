@@ -1,14 +1,23 @@
 class Ball {
-    constructor(size) {
-        this.pos = createVector(random(20, height - 20), random(20, height - 20));
-        this.speed = p5.Vector.random2D().mult(2);
+    constructor(size, color = 120) {
+        this.pos = createVector(random(90, height - 100), random(80, height - 100));
+        this.speed = p5.Vector.random2D().mult(5);
         this.diameter = size;
-        this.color = color(255);
+        this.color = color;
+        this.brightness = 50;
     }
 
-    show() {
-        fill(this.color)
-        circle(this.pos.x, this.pos.y, this.diameter)
+    isOverlapping(object) {
+        let d = dist(this.pos.x, this.pos.y, object.pos.x, object.pos.y);
+        if (d < this.diameter/2 + object.diameter/2) {
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    changeColor(lambda){
+        this.brightness = lambda;
     }
 
     isInside(xpos, ypos) {
@@ -19,16 +28,19 @@ class Ball {
         }
     }
 
+    show() {
+        fill(this.brightness,this.color)
+        circle(this.pos.x, this.pos.y, this.diameter)
+    }
+
     move() {
         this.pos.add(this.speed);
 
         if (this.pos.x > width || this.pos.x < 0) {
-            this.speed.x = this.speed.x * -1;
-            this.color = color(random(20, 255), random(50, 255), random(80, 255));
+            this.speed.x = this.speed.x * -1;  
         }
         else if (this.pos.y > height || this.pos.y < 0) {
             this.speed.y = this.speed.y * -1;
-            this.color = color(random(20, 255), random(50, 255), random(80, 255));
         }
     }
 }

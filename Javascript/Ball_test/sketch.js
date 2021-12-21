@@ -6,8 +6,7 @@ let balls = [];
 
 function setup() {
   createCanvas(400, 400);
-  angleMode(DEGREES);
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 10; i++) {
     let ball = new Ball(50);
     balls.push(ball);
   }
@@ -15,9 +14,21 @@ function setup() {
 
 function draw() {
   background(0);
-  for (let i = 0; i < balls.length; i++) {
-    balls[i].show();
-    balls[i].move();
+  
+  for (let ball of balls) {
+    ball.show();
+    ball.move();
+    let lamp = false;
+    for (let elem of balls){
+      if (ball !== elem && ball.isOverlapping(elem)) {
+        lamp = true;
+      }
+    }
+    if (lamp){
+      ball.changeColor(200);
+    } else {
+      ball.changeColor(40);
+    }
   }
 }
 
