@@ -12,7 +12,7 @@ class Ball {
     }
 
     isInside(xpos, ypos) {
-        if (dist(xpos, ypos, this.pos.x, this.pos.y) > diameter / 2) {
+        if (dist(xpos, ypos, this.pos.x, this.pos.y) > this.diameter / 2) {
             return false;
         } else {
             return true;

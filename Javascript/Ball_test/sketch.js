@@ -7,7 +7,7 @@ let balls = [];
 function setup() {
   createCanvas(400, 400);
   angleMode(DEGREES);
-  for (let i = 0; i < 5; i++){
+  for (let i = 0; i < 5; i++) {
     let ball = new Ball(50);
     balls.push(ball);
   }
@@ -22,9 +22,9 @@ function draw() {
 }
 
 function mousePressed() {
-  for (let i = 0; i < balls.length; i++){
-    if (balls[i].isInside()){
-      return
+  for (let i = 0; i < balls.length; i++) {
+    if (balls[i].isInside(mouseX, mouseY) && mouseButton === CENTER) {
+      balls.splice(i, 1);
     }
   }
 }
