@@ -4,32 +4,28 @@
 
 let balls = [];
 
-
 function setup() {
   createCanvas(400, 400);
-  for (let i = 0; i < 1; i++){
-    balls[i] = new Ball(random(5,40));
-    angleMode(DEGREES);
-  }
+  angleMode(DEGREES);
 }
 
 function draw() {
   background(0);
-  for (let i = 0; i < balls.length; i++){
+  for (let i = 0; i < balls.length; i++) {
     balls[i].show();
     balls[i].move();
   }
 }
 
-// function mousePressed(){
-//   let ball = new Ball(random(30,50));
-//   balls.push(ball);
-// }
+function mousePressed(){
+  let ball = new Ball(mouseX,mouseY,random(20,45));
+  balls.push(ball);
+}
 
 class Ball {
-  constructor(size) {
-    this.pos = createVector(200,200)
-    this.speed = createVector(4,1)
+  constructor(xpos, ypos, size) {
+    this.pos = createVector(xpos, ypos, 200);
+    this.speed = p5.Vector.random2D().mult(3);
     this.diameter = size;
   }
 
@@ -39,12 +35,12 @@ class Ball {
 
   move() {
     this.pos.add(this.speed);
-    
-    if (this.pos.x > width || this.pos.x < 0){
+
+    if (this.pos.x > width || this.pos.x < 0) {
       this.speed.x = this.speed.x * -1;
       fill(random(20,255), random(50,255), random(80,255))
     }
-    else if (this.pos.y > height || this.pos.y < 0){
+    else if (this.pos.y > height || this.pos.y < 0) {
       this.speed.y = this.speed.y * -1;
       fill(random(20,255), random(50,255), random(80,255))
     }
