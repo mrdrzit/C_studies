@@ -27,9 +27,11 @@ class Ball {
     this.pos = createVector(xpos, ypos, 200);
     this.speed = p5.Vector.random2D().mult(3);
     this.diameter = size;
+    this.color = color(255);
   }
 
   show() {
+    fill(this.color)
     circle(this.pos.x, this.pos.y, this.diameter)
   }
 
@@ -38,11 +40,11 @@ class Ball {
 
     if (this.pos.x > width || this.pos.x < 0) {
       this.speed.x = this.speed.x * -1;
-      fill(random(20,255), random(50,255), random(80,255))
+      this.color = color(random(20,255), random(50,255), random(80,255));
     }
     else if (this.pos.y > height || this.pos.y < 0) {
       this.speed.y = this.speed.y * -1;
-      fill(random(20,255), random(50,255), random(80,255))
+      this.color = color(random(20,255), random(50,255), random(80,255));
     }
   }
 }
