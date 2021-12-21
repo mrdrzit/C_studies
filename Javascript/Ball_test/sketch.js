@@ -14,20 +14,14 @@ function setup() {
 
 function draw() {
   background(0);
-  
-  for (let ball of balls) {
-    ball.show();
-    ball.move();
+  for (let i = 0; i < balls.length; i++) {
+    balls[i].show();
+    balls[i].move();
     let lamp = false;
-    for (let elem of balls){
-      if (ball !== elem && ball.isOverlapping(elem)) {
+    for (let j = i; j < balls.length; j++) {
+      if (ball !== balls[i] && balls[i].isOverlapping(elem)) {
         lamp = true;
       }
-    }
-    if (lamp){
-      ball.changeColor(200);
-    } else {
-      ball.changeColor(40);
     }
   }
 }

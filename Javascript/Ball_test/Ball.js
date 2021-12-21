@@ -1,10 +1,9 @@
 class Ball {
     constructor(size, color = 120) {
         this.pos = createVector(random(90, height - 100), random(80, height - 100));
-        this.speed = p5.Vector.random2D().mult(5);
+        this.speed = p5.Vector.random2D().mult(3);
         this.diameter = size;
         this.color = color;
-        this.brightness = 50;
     }
 
     isOverlapping(object) {
@@ -17,7 +16,7 @@ class Ball {
     }
 
     changeColor(lambda){
-        this.brightness = lambda;
+        this.color = lambda;
     }
 
     isInside(xpos, ypos) {
@@ -29,7 +28,7 @@ class Ball {
     }
 
     show() {
-        fill(this.brightness,this.color)
+        fill(this.color)
         circle(this.pos.x, this.pos.y, this.diameter)
     }
 
