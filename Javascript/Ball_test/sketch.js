@@ -18,10 +18,17 @@ function draw() {
     balls[i].show();
     balls[i].move();
     let lamp = false;
-    for (let j = i; j < balls.length; j++) {
-      if (ball !== balls[i] && balls[i].isOverlapping(elem)) {
+
+    for (let j = 0; j < balls.length; j++) {
+      if (balls[i] !== balls[j] && balls[i].isOverlapping(balls[j])) {
         lamp = true;
       }
+    }
+
+    if (lamp) {
+      balls[i].changeColor(200);
+    } else {
+      balls[i].changeColor(40);
     }
   }
 }
