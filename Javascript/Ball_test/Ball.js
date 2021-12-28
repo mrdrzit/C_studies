@@ -33,12 +33,13 @@ class Ball {
   }
 
   move() {
+    let r = this.diameter / 2;
     this.pos.add(this.speed);
 
-    if (this.pos.x > width || this.pos.x < 0) {
+    if (this.pos.x + r > width || this.pos.x < 0 + r) {
       this.speed.x = this.speed.x * -1;
     }
-    else if (this.pos.y > height || this.pos.y < 0) {
+    else if (this.pos.y + r > height || this.pos.y < 0 + r) {
       this.speed.y = this.speed.y * -1;
     }
   }
