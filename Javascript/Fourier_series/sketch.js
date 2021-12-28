@@ -7,19 +7,27 @@
 let Fs = 1000;    // Amostragem
 let dt = 1 / Fs;    // seconds per sample
 let Time = 3;     // seconds
-let timeVector = (math.range(0, Time, 0.01));
+let timeVector = (math.range(0, Time, dt));
 let wave;
-
+let wave2;
+let wavesum;
 function setup() {
   
   createCanvas(600, 600);
   wave = createWave(6, 10, timeVector);
+  wave2 = createWave(12, 20, timeVector);
+  wavesum = math.add(wave,wave2);
 }
 
 function draw() {
   translate(width/100, height/2)
   background(0, 22, 30);
   drawSw(wave, timeVector);
+  translate(width/4000, height/12);
+  drawSw(wave2, timeVector);
+  translate(width/3500, height/12);
+  drawSw(wavesum, timeVector);
+
 }
 
 function createWave(A, F, T, phase = 0) {
