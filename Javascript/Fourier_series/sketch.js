@@ -3,41 +3,38 @@
 
 
 // Fórmula >>> y(t) = Asin(2PI * f * t + PHI)
-let frequency = 2;
-let time = 60;
-let angle = 0;
-let amplitude = 1;
-let valuesY = [];
-let timeVector = [];
-let posVector = [];
 
+let Fs = 1000;    // Amostragem
+let dt = 1 / Fs;    // seconds per sample
+let Time = 3;     // seconds
+let timeVector = (math.range(0, Time, 0.01));
+let wave;
 
 function setup() {
+  
   createCanvas(600, 600);
-  angleMode(RADIANS);
+  wave = createWave(6, 10, timeVector);
 }
 
 function draw() {
-  background(0,22,30);
-  createWave(amplitude, frequency, time)
-  drawSw(valuesY, timeVector)
+  translate(width/100, height/2)
+  background(0, 22, 30);
+  drawSw(wave, timeVector);
 }
 
-function createWave(A, F, T, phase = 0){
-
-  for (let itempo = 0; itempo < T; itempo++){
-    let y = A * sin(TWO_PI * F * itempo)
-    valuesY.push(y);
-    timeVector[itempo] = itempo;
+function createWave(A, F, T, phase = 0) {
+  let dataY = [];
+  for (let i = 0; i < T._data.length; i++) {
+    let y = A * sin(TWO_PI * F * T._data[i] + phase)
+    dataY.push(y);
   }
+  return dataY
 }
 
-function drawSw(yValues, xValues){
-  for (let pos = 0; pos < xValues.length; pos++) {
-    posVector.push(pos);
-  }
-  for(let i = 0; i < yValues; i++){
-    point(posVector[i], yValues[i])
-    strokeWeight(10)
+function drawSw(xValues, yValues) {
+  for (let i = 0; i < wave.length; i++) {
+    noStroke();
+    fill(255);
+    circle(i,xValues[i],2);
   }
 }
