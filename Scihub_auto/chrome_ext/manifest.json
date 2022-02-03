@@ -1,6 +1,25 @@
 {
-    "name": "Getting Started Example",
-    "description": "Build an Extension!",
+    "name": "Scihub lazy automation",
+    "description": "Scihub extension using PyJs",
     "version": "1.0",
-    "manifest_version": 3
+    "manifest_version": 3,
+    "background": {
+        "service_worker": "background.js"
+    },
+    "permissions": ["storage"],
+    "action": {
+        "default_popup": "popup.html",
+        "default_icon": {
+            "16": "/images/sci_hub16.png",
+            "32": "/images/sci_hub32.png",
+            "48": "/images/sci_hub48.png",
+            "128": "/images/sci_hub128.png"
+          }
+      },
+    "icons": {
+        "16": "/images/sci_hub16.png",
+        "32": "/images/sci_hub32.png",
+        "48": "/images/sci_hub48.png",
+        "128": "/images/sci_hub128.png"
+    }
 }
