@@ -7,13 +7,12 @@ folders = ["Display.Nview","Display.Optimus","Display.Update","FrameViewSDK","GF
 path = os.getcwd()
 dirs = os.listdir(path)
 
-for folder in dirs:
-    for key in foldersi:
-        if key != folder:
-            print("This version of the driver have additional folders, please change the list inside the script")
-            exit()
+if len(default_folders) != len(dirs):
+    print("This version of the driver have additional folders, please change the list inside the script")
+    exit()
 
 for folder in dirs:
     for key in folders:
         if folder == key:
-            shutil.rmtree(path, ignore_errors=False, onerror=None)
+            path_current = path+"\\"+key
+            shutil.rmtree(path_current, ignore_errors=False, onerror=None)
