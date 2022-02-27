@@ -1,7 +1,7 @@
 import os
 import shutil
 
-foldersi = ["Display.Driver","Display.Nview","Display.Optimus","Display.Update","FrameViewSDK","GFExperience","GFExperience.NvStreamSrv","HDAudio","MSVCRT","nodejs","NvBackend","NvContainer","NVI2","NvModuleTracker","NVPCF","NvTelemetry","NvVAD","NvvHCI","PhysX","PPC","ShadowPlay","ShieldWirelessController","Update.Core"]
+default_folders = ["Display.Driver","Display.Nview","Display.Optimus","Display.Update","FrameViewSDK","GFExperience","GFExperience.NvStreamSrv","HDAudio","MSVCRT","nodejs","NvBackend","NvContainer","NVI2","NvModuleTracker","NVPCF","NvTelemetry","NvVAD","NvvHCI","PhysX","PPC","ShadowPlay","ShieldWirelessController","Update.Core","decrapify.py","EULA.txt","ListDevices.txt","setup.cfg","setup.exe"]
 folders = ["Display.Nview","Display.Optimus","Display.Update","FrameViewSDK","GFExperience.NvStreamSrv","nodejs","NvBackend","NvContainer","NvModuleTracker","NVPCF","NvTelemetry","NvVAD","NvvHCI","PPC","ShadowPlay","ShieldWirelessController","Update.Core"]
 
 path = os.getcwd()
