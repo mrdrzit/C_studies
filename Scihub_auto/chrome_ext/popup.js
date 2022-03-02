@@ -10,14 +10,25 @@ changeColor.addEventListener("click", async () => {
   
     chrome.scripting.executeScript({
       target: { tabId: tab.id },
-      function: setPageBackgroundColor,
+      function: fuction_alert,
     });
   });
   
   // The body of this function will be executed as a content script inside the
-  // current page
-  function setPageBackgroundColor() {
-    chrome.storage.sync.get("color", ({ color }) => {
-      document.body.style.backgroundColor = color;
-    });
+  // current page ("http://doi.org/")
+
+  function fuction_alert(){
+    // links = Array.from(document.links);
+    links = document.links;
+    //console.log(links[121]);
+    for (var i = 0; i < links.length; i++){
+      let tmp = links[i].toString()
+      //console.log("what");
+      if (tmp.includes("doi.org/")){
+        //console.log(links[i]);
+        let store_link = links[i].getAttribute("href");
+        console.log(store_link);
+        break
+      }
+    }
   }
