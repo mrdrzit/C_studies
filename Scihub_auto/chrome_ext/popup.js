@@ -24,13 +24,12 @@ changeColor.addEventListener("click", async () => {
       if (tmp.includes("doi.org/")){
         let store_link = links[i].getAttribute("href");
         console.log(store_link);
-        let newURL = "https://sci-hub.se/"+store_link;
-        chrome.tabs.create({ url: newURL });
-        break
-      }
+      let newURL = "https://sci-hub.se/" + store_link;
+      chrome.runtime.sendMessage(newURL);
+      break
     }
   }
-
+}
   chrome.browserAction.onClicked.addListener(function(activeTab)
 {
     var newURL = "http://www.youtube.com/watch?v=oHg5SJYRHA0";
