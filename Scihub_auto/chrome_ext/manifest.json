@@ -21,6 +21,5 @@
         "32": "/images/sci_hub32.png",
         "48": "/images/sci_hub48.png",
         "128": "/images/sci_hub128.png"
-    },
-    "options_page": "options.html"
+    }
 }
