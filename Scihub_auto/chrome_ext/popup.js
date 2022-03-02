@@ -18,17 +18,21 @@ changeColor.addEventListener("click", async () => {
   // current page
 
   function fuction_alert(){
-    // links = Array.from(document.links);
     links = document.links;
-    //console.log(links[121]);
     for (var i = 0; i < links.length; i++){
       let tmp = links[i].toString()
-      //console.log("what");
       if (tmp.includes("doi.org/")){
-        //console.log(links[i]);
         let store_link = links[i].getAttribute("href");
         console.log(store_link);
+        let newURL = "https://sci-hub.se/"+store_link;
+        chrome.tabs.create({ url: newURL });
         break
       }
     }
   }
+
+  chrome.browserAction.onClicked.addListener(function(activeTab)
+{
+    var newURL = "http://www.youtube.com/watch?v=oHg5SJYRHA0";
+    chrome.tabs.create({ url: newURL });
+});
