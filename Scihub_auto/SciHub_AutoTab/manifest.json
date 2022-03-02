@@ -1,6 +1,6 @@
 {
     "name": "Scihub lazy automation",
-    "description": "Scihub extension using PyJs",
+    "description": "Scihub extension to automate the paper opening task",
     "version": "2.1.0",
     "manifest_version": 3,
     "background": {
