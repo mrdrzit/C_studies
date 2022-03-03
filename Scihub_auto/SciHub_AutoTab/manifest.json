@@ -1,7 +1,7 @@
 {
-    "name": "Scihub lazy automation",
+    "name": "Scihub automation",
     "description": "Scihub extension to automate the paper opening task",
-    "version": "2.1.0",
+    "version": "2.2.0",
     "manifest_version": 3,
     "background": {
         "service_worker": "background.js"
