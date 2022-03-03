@@ -1,3 +1,6 @@
+var current_domain = window.location.hostname;
+
+if (current_domain != "www.nature.com") {
 links = document.links;
 for (var i = 0; i < links.length; i++) {
     let tmp = links[i].toString()
