@@ -25,3 +25,25 @@ if (current_domain != "www.nature.com") {
 }
 
 //TODO #4
+
+// *EXAMPLE OF DOMAIN ERROR HANDLING USING PYTHON* \\
+
+// import requests
+// import os
+
+// os.system('cls')
+
+// s = ["sci-hub.st", "sci-hub.ru", "sci-hub.se", "sci-hub.ren", "sci-hub.nz", "sci-hub.cn", "sci-hub.hk", "sci-hub.tw", "sci-hub.ws",
+//      "sci-hub.org", "sci-hub.cc", "sci-hub.ac", "sci-hub.io", "sci-hub.mn", "sci-hub.tv", "sci-hub.biz", "sci-hub.is", "sci-hub.nu", "sci-hub.ga", "sci-hub.gq"]
+// with requests.Session() as req:
+//   for r in range(0, len(s)):
+//     try:
+//       secure = req.get("https://" + s[r])
+//     except:
+//       print("The domain " + str(s[r]) + " doesn't work!")
+//       continue
+
+//     if secure.status_code == 200:
+//       print("The domain " + str(s[r]) + " works!")
+//     else:
+//       print("The domain " + str(s[r]) + " doesn't work!")
