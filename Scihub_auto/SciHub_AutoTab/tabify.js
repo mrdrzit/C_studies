@@ -1,4 +1,6 @@
 var current_domain = window.location.hostname;
+var domains = ["sci-hub.st", "sci-hub.ru", "sci-hub.se", "sci-hub.ren", "sci-hub.nz", "sci-hub.cn", "sci-hub.hk", "sci-hub.tw", "sci-hub.ws", "sci-hub.org", "sci-hub.cc", "sci-hub.ac", "sci-hub.io", "sci-hub.mn", "sci-hub.tv", "sci-hub.biz", "sci-hub.is", "sci-hub.nu", "sci-hub.ga", "sci-hub.gq"];
+
 
 if (current_domain != "www.nature.com") {
     links = document.links;
