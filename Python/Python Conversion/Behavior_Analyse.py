@@ -1,15 +1,18 @@
 from tkinter import *
 from tkinter import ttk
+import numpy as np
 
 def close_window():
     global plts, Exp_nm, Exp_tp, Frames, ArenaWidth, ArenaHeight
-    plts = Exp_name.get()
-    Exp_nm = Exp_type.get()
-    Exp_tp = Plots.get()
+    Exp_nm = Exp_name.get()
+    Exp_tp = Exp_type.get()
+    plts = Plots.get()
     Frames = Fps.get()
     ArenaWidth = Arena_width.get()
     ArenaHeight = Arena_height.get()
     root.destroy()
+    input_settings = np.array([])
+    return input_settings
 
 root = Tk()
 root.title("Define Settings")
@@ -57,6 +60,5 @@ for child in mainframe.winfo_children():
 Exp_name.focus()
 root.mainloop()
 
-#TODO #5 Create an input dialog to "Define Settings"
 #TODO #6 Import and organize files based on extension
 #TODO #7 Create an imput dialog that defines "Figure Organization"
