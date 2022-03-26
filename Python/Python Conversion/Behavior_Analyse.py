@@ -6,12 +6,12 @@ def close_window():
     global plts, Exp_nm, Exp_tp, Frames, ArenaWidth, ArenaHeight
     Exp_nm = Exp_name.get()
     Exp_tp = Exp_type.get()
-    plts = Plots.get()
+    Plts = Plots.get()
     Frames = Fps.get()
     ArenaWidth = Arena_width.get()
     ArenaHeight = Arena_height.get()
     root.destroy()
-    input_settings = np.array([])
+    input_settings = np.array([Exp_nm, Exp_tp, Plts, Frames, Arena_height, Arena_width])
     return input_settings
 
 root = Tk()
