@@ -1,9 +1,6 @@
 from tkinter import *
 from tkinter import ttk
 
-root = Tk()
-root.title("Define Settings")
-
 def close_window():
     global plts, Exp_nm, Exp_tp, Frames, ArenaWidth, ArenaHeight
     plts = Exp_name.get()
