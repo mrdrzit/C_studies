@@ -54,6 +54,11 @@ Arena_height.insert(0, "65")
 Arena_height.grid(column=2, row=6, sticky=W)
 ttk.Label(mainframe, text="Arena size -> Height (cm):").grid(column=1, row=6)
 
+for child in mainframe.winfo_children(): 
+    child.grid_configure(padx=5, pady=5)
+
+Exp_name.focus()
+root.mainloop()
 
 #TODO #5 Create an input dialog to "Define Settings"
 #TODO #6 Import and organize files based on extension
