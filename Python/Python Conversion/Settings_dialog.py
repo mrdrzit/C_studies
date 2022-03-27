@@ -4,7 +4,7 @@ import numpy as np
 
 def Create_Settings_Dialog():
   def close_window():
-      global Plts, Exp_nm, Exp_tp, Frames, ArenaWidth, ArenaHeight, input_settings
+      global Plts, Exp_nm, Exp_tp, Frames, ArenaWidth, ArenaHeight, Input_settings
       Exp_nm = Exp_name.get()
       Exp_tp = Exp_type.get()
       Plts = Plots.get()
@@ -12,7 +12,7 @@ def Create_Settings_Dialog():
       ArenaWidth = Arena_width.get()
       ArenaHeight = Arena_height.get()
       root.destroy()
-      input_settings = [Exp_nm, Exp_tp, Plts, Frames, ArenaWidth, ArenaHeight]
+      Input_settings = [Exp_nm, Exp_tp, Plts, Frames, ArenaWidth, ArenaHeight]
       pass
 
   root = Tk()
@@ -61,7 +61,7 @@ def Create_Settings_Dialog():
   Exp_name.focus()
   root.attributes("-topmost", True)
   root.mainloop()
-  return input_settings
+  return Input_settings
 
 
 def Create_Plots_Dialog():

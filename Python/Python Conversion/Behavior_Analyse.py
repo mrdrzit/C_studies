@@ -59,12 +59,13 @@ Plot_Settings = Create_Plots_Dialog()
 
 ## Function Calls
 
-Video_Analyse(input_settings,File_Header,Data)
+Video_Analyse(Input_Settings,File_Header,Data)
 
-# [analyse,header,data] = Video_Analyse(input_settings,header,data);
+if Input_Settings[1] == 1 and Input_Settings[2] == 1:
+  print("Will plot open field soon...")
 
-# if     str2num(input_settings{2, 1}) == 1 && str2num(input_settings{3, 1}) == 1
-#        plot_openfield;
+elif Input_Settings[1] == 2 and Input_Settings[2] == 1:
+  Plot_EPM
 
 # elseif str2num(input_settings{2, 1}) == 2 && str2num(input_settings{3, 1}) == 1
 #        plot_EPM;
