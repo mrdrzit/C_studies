@@ -2,9 +2,9 @@ from tkinter import *
 from tkinter import ttk
 import numpy as np
 
-def create_Settings_dialog():
+def Create_Settings_Dialog():
   def close_window():
-      global plts, Exp_nm, Exp_tp, Frames, ArenaWidth, ArenaHeight
+      global Plts, Exp_nm, Exp_tp, Frames, ArenaWidth, ArenaHeight, input_settings
       Exp_nm = Exp_name.get()
       Exp_tp = Exp_type.get()
       Plts = Plots.get()
@@ -12,8 +12,8 @@ def create_Settings_dialog():
       ArenaWidth = Arena_width.get()
       ArenaHeight = Arena_height.get()
       root.destroy()
-      input_settings = np.array([Exp_nm, Exp_tp, Plts, Frames, Arena_height, Arena_width])
-      return input_settings
+      input_settings = [Exp_nm, Exp_tp, Plts, Frames, ArenaWidth, ArenaHeight]
+      pass
 
   root = Tk()
   root.title("Define Settings")
@@ -99,3 +99,4 @@ def Create_Plots_Dialog():
   Rows.focus()
   root.attributes("-topmost", True)
   root.mainloop()
+  return Plot_Options
