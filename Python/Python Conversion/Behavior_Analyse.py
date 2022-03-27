@@ -29,9 +29,11 @@ for file in range(0, len(FileName)):
   elif FileName[file].name.endswith(".png"):
     File_Header.File_Name_Png[file] = os.path.basename(FileName[file].name)
 
-  for files in range(0, len(FileName)):
-    data[files] = pd.read_csv(FileName[files].buffer, header=None, delimiter=",", dtype={"0": np.float32, "1": np.float32, "2": np.intc, "3": np.intc, "4": np.intc, "5": np.intc, "6": np.intc})
-    pass
+# Cleanup the empty values in the srtuct attributes
+File_Header.File_path = list(filter(None, File_Header.File_path))
+File_Header.File_Name_Csv = list(filter(None, File_Header.File_Name_Csv))
+File_Header.File_Name_Png = list(filter(None, File_Header.File_Name_Png))
+File_Header.Last_Frame = list(filter(None, File_Header.Last_Frame))
 
 
 #TODO #6 Import and organize files based on extension
