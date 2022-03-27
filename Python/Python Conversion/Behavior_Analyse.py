@@ -55,5 +55,4 @@ File_Header.File_Name_Png = list(filter(None, File_Header.File_Name_Png))
 
 Plot_Settings = Create_Plots_Dialog()
 
-#TODO #7 Create an imput dialog that defines "Figure Organization"
 #TODO #9 Separate the dialog creation from the main file to clean up the space a little
