@@ -27,13 +27,13 @@ root.destroy()  # Delete mainframe
 
 Data = [None] * (len(FileName)) # Initialize the data struct with the number of files loaded 
 File_Header = Header([None],[None],[None]*len(FileName),[None]*len(FileName)) # Initialize the attributes of header with the number of files loaded
-                                                                       # In this assignment, only "Last_Frame" and "File_Path", are not being
-                                                                       # Preallocated. This is because in this instance of the code, the path
-                                                                       # is being stored as a simple string, without anymore info about the image.
-                                                                       # However, the "Last_Frame" was yielding an error where the empty values
-                                                                       # cleanup was outputting "The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()"
-                                                                       # See "https://researchdatapod.com/python-valueerror-the-truth-value-of-an-array-with-more-than-one-element-is-ambiguous-use-a-any-or-a-all/" for more info
-                                                                       # The method used is comparing each value to a boolean "None".
+                                                                              # In this assignment, only "Last_Frame" and "File_Path", are not being
+                                                                              # Preallocated. This is because in this instance of the code, the path
+                                                                              # is being stored as a simple string, without anymore info about the image.
+                                                                              # However, the "Last_Frame" was yielding an error where the empty values
+                                                                              # cleanup was outputting "The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()"
+                                                                              # See "https://researchdatapod.com/python-valueerror-the-truth-value-of-an-array-with-more-than-one-element-is-ambiguous-use-a-any-or-a-all/" for more info
+                                                                              # The method used is comparing each value to a boolean "None".
 
 # Loop through all files and convert the table data into a DataFrame (Basically a Pandas Table)
 for file in range(0, len(FileName)):
@@ -61,10 +61,10 @@ Plot_Settings = Create_Plots_Dialog()
 
 Video_Analyse(Input_Settings,File_Header,Data)
 
-if Input_Settings[1] == 1 and Input_Settings[2] == 1:
+if int(Input_Settings[1]) == 1 and int(Input_Settings[2]) == 1:
   print("Will plot open field soon...")
-
-elif Input_Settings[1] == 2 and Input_Settings[2] == 1:
+elif int(Input_Settings[1]) == 2 and int(Input_Settings[2]) == 1:
   Plot_EPM
+pass
 
 #TODO #9 Separate the dialog creation from the main file to clean up the space a little
