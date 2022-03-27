@@ -61,10 +61,10 @@ Plot_Settings = Create_Plots_Dialog()
 
 Video_Analyse(Input_Settings,File_Header,Data)
 
-if Input_Settings[1] == 1 and Input_Settings[2] == 1:
+if int(Input_Settings[1]) == 1 and int(Input_Settings[2]) == 1:
   print("Will plot open field soon...")
-
-elif Input_Settings[1] == 2 and Input_Settings[2] == 1:
+elif int(Input_Settings[1]) == 2 and int(Input_Settings[2]) == 1:
   Plot_EPM
+pass
 
 #TODO #9 Separate the dialog creation from the main file to clean up the space a little
