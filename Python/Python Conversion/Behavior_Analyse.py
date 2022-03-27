@@ -67,8 +67,4 @@ if Input_Settings[1] == 1 and Input_Settings[2] == 1:
 elif Input_Settings[1] == 2 and Input_Settings[2] == 1:
   Plot_EPM
 
-# elseif str2num(input_settings{2, 1}) == 2 && str2num(input_settings{3, 1}) == 1
-#        plot_EPM;
-       
-# end
 #TODO #9 Separate the dialog creation from the main file to clean up the space a little
