@@ -25,7 +25,7 @@ File_Header = Header([None],[None],[None]*len(FileName),[None]*len(FileName)) # 
                                                                        # Preallocated. This is because in this instance of the code, the path
                                                                        # is being stored as a simple string, without anymore info about the image.
                                                                        # However, the "Last_Frame" was yielding an error where the empty values
-                                                                       # cleanup were outputting "The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()"
+                                                                       # cleanup was outputting "The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()"
                                                                        # See "https://researchdatapod.com/python-valueerror-the-truth-value-of-an-array-with-more-than-one-element-is-ambiguous-use-a-any-or-a-all/" for more info
                                                                        # The method used is comparing each value to a boolean "None".
 
