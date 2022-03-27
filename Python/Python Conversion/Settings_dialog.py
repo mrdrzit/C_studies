@@ -2,9 +2,9 @@ from tkinter import *
 from tkinter import ttk
 import numpy as np
 
-def create_Settings_dialog():
+def Create_Settings_Dialog():
   def close_window():
-      global plts, Exp_nm, Exp_tp, Frames, ArenaWidth, ArenaHeight
+      global Plts, Exp_nm, Exp_tp, Frames, ArenaWidth, ArenaHeight, input_settings
       Exp_nm = Exp_name.get()
       Exp_tp = Exp_type.get()
       Plts = Plots.get()
@@ -12,8 +12,8 @@ def create_Settings_dialog():
       ArenaWidth = Arena_width.get()
       ArenaHeight = Arena_height.get()
       root.destroy()
-      input_settings = np.array([Exp_nm, Exp_tp, Plts, Frames, Arena_height, Arena_width])
-      return input_settings
+      input_settings = [Exp_nm, Exp_tp, Plts, Frames, ArenaWidth, ArenaHeight]
+      pass
 
   root = Tk()
   root.title("Define Settings")
@@ -59,4 +59,44 @@ def create_Settings_dialog():
       child.grid_configure(padx=5, pady=5)
 
   Exp_name.focus()
+  root.attributes("-topmost", True)
   root.mainloop()
+  return input_settings
+
+
+def Create_Plots_Dialog():
+  def close_window():
+      global Plot_Rows, Plot_Columns, Plot_Options
+      Plot_Rows = Rows.get()
+      Plot_Columns = Columns.get()
+      root.destroy()
+      Plot_Options = [Plot_Columns, Plot_Rows]
+      
+
+  root = Tk()
+  root.title("Define Plot Settings")
+
+  mainframe = ttk.Frame(root, padding="3 3 12 12")
+  mainframe.grid(column=0,row=0, sticky=(N, W, E, S))
+  root.columnconfigure(0, weight=1)
+  root.rowconfigure(0, weight=1)
+  Btn = ttk.Button(mainframe, text="OK", command = close_window)
+  Btn.grid(column=9, row=9, sticky=E)
+
+  Rows = ttk.Entry(mainframe, width=6)
+  Rows.insert(0, "65")
+  Rows.grid(column=2, row=1, sticky=W)
+  ttk.Label(mainframe, text="Number of Rows in the plot image:").grid(column=1, row=1)
+
+  Columns = ttk.Entry(mainframe, width=6)
+  Columns.insert(0, "65")
+  Columns.grid(column=2, row=2, sticky=W)
+  ttk.Label(mainframe, text="Number of Columns in the plot image:").grid(column=1, row=2)
+
+  for child in mainframe.winfo_children(): 
+      child.grid_configure(padx=5, pady=5)
+
+  Rows.focus()
+  root.attributes("-topmost", True)
+  root.mainloop()
+  return Plot_Options
