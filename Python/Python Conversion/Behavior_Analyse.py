@@ -2,6 +2,8 @@ from tkinter import *
 from tkinter import ttk
 from tkinter import filedialog as fd
 from Settings_dialog import *
+from Video_Analyse import *
+from Plot_EPM import *
 from skimage import io 
 import pandas as pd
 import numpy as np
@@ -55,4 +57,17 @@ File_Header.File_Name_Png = list(filter(None, File_Header.File_Name_Png))
 
 Plot_Settings = Create_Plots_Dialog()
 
+## Function Calls
+
+
+
+# [analyse,header,data] = Video_Analyse(input_settings,header,data);
+
+# if     str2num(input_settings{2, 1}) == 1 && str2num(input_settings{3, 1}) == 1
+#        plot_openfield;
+
+# elseif str2num(input_settings{2, 1}) == 2 && str2num(input_settings{3, 1}) == 1
+#        plot_EPM;
+       
+# end
 #TODO #9 Separate the dialog creation from the main file to clean up the space a little
