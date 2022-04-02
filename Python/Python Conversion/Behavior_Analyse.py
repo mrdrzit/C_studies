@@ -16,6 +16,15 @@ class Header:
     self.File_Name_Csv = File_Name_Csv
     self.File_Name_Png = File_Name_Png
 
+
+# Create list of headers
+# In the file import loop, use class method to distinguish pngs from csvs
+# ran (length/2)
+# Every iteration, look for png and csv at the same time (else, throw error)
+# Add object header with the csv and png itself 
+
+# for x in headers apply x.method (in this sense, method being the analysis itself)
+
 Input_Settings = Create_Settings_Dialog()
 
 root = Tk() # Create a mainframe window
