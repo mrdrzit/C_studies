@@ -46,8 +46,8 @@ with re.session() as req:
       except re.exceptions.ConnectionError:
         print("couldn't connect to server")
       if download.status_code == 200:
-    with open(names[2][2], 'wb') as f:
-      print(f"Downloading {names[2][2]}")
-      f.write(download.content)
-  else:
-    print(f"Download Failed For File {names[2][2]}")
+        with open(names[base_urls][files], 'wb') as f:
+          print(f"Downloading: {names[base_urls][files]}")
+          f.write(download.content)
+      else:
+        print(f"Download Failed For File {names[base_urls][files]}")
