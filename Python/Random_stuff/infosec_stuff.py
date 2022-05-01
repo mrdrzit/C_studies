@@ -31,6 +31,11 @@ with re.session() as req:
         hrefs[url][place] = base_urls[url] + soup[refs].attrs['href']
         names[url][place] = soup[refs].text
         place += 1
+        
+for values in range(0, len(hrefs)):
+  hrefs[values] = np.trim_zeros(hrefs[values])
+  names[values] = np.trim_zeros(names[values])
+
 print("Let's download some stuff")
 
 with re.session() as req:
