@@ -16,14 +16,15 @@ base_urls = ['https://pegaso.changeip.org/DOCS-TECH/Programming/Python/',
              'https://pegaso.changeip.org/DOCS-TECH/Information%20Theory/',
              ]
 
-hrefs = [[0]*150 for i in range(0,len(base_urls))]
-names = [[0]*150 for i in range(0,len(base_urls))]
+hrefs = [[0]*150 for i in range(0, len(base_urls))]
+names = [[0]*150 for i in range(0, len(base_urls))]
+
 
 with re.session() as req:
-  print("i'll do stuff, hang tight")
+  print("I'll do stuff, hang tight")
   for url in range(0, len(base_urls)):
     place = 0
-    html = re.get(base_urls[url])
+    html = req.get(base_urls[url])
     soup = bs(html.text, 'html.parser').find_all('a')
     for refs in range(0, len(soup)):
       if soup[refs].attrs['href'].endswith('pdf'):
