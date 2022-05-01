@@ -31,3 +31,12 @@ with re.session() as req:
         names[url][place] = soup[refs].text
         place += 1
 print("Let's download some stuff")
+
+with re.session() as req:
+  download = re.get(hrefs[1][1])
+  if download.status_code == 200:
+    with open(names[2][2], 'wb') as f:
+      print(f"Downloading {names[2][2]}")
+      f.write(download.content)
+  else:
+    print(f"Download Failed For File {names[2][2]}")
