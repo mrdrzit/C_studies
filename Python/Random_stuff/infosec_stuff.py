@@ -39,8 +39,13 @@ for values in range(0, len(hrefs)):
 print("Let's download some stuff")
 
 with re.session() as req:
-  download = re.get(hrefs[1][1])
-  if download.status_code == 200:
+  for links in range(0, len(base_urls)):
+    for files in range(0, len(hrefs)):
+      try:
+        download = req.get(hrefs[base_urls][files])
+      except re.exceptions.ConnectionError:
+        print("couldn't connect to server")
+      if download.status_code == 200:
     with open(names[2][2], 'wb') as f:
       print(f"Downloading {names[2][2]}")
       f.write(download.content)
