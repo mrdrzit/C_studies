@@ -40,7 +40,7 @@ print("Let's download some stuff")
 
 with re.session() as req:
   for links in range(0, len(base_urls)):
-    for files in range(0, len(hrefs)):
+    for files in range(0, len(hrefs[links])):
       try:
         download = req.get(hrefs[links][files])
       except re.exceptions.ConnectionError:
