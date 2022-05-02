@@ -31,7 +31,7 @@ with re.session() as req:
         hrefs[url][place] = base_urls[url] + soup[refs].attrs['href']
         names[url][place] = soup[refs].text
         place += 1
-        
+
 for values in range(0, len(hrefs)):
   hrefs[values] = np.trim_zeros(hrefs[values])
   names[values] = np.trim_zeros(names[values])
@@ -42,12 +42,12 @@ with re.session() as req:
   for links in range(0, len(base_urls)):
     for files in range(0, len(hrefs)):
       try:
-        download = req.get(hrefs[base_urls][files])
+        download = req.get(hrefs[links][files])
       except re.exceptions.ConnectionError:
         print("couldn't connect to server")
       if download.status_code == 200:
-        with open(names[base_urls][files], 'wb') as f:
-          print(f"Downloading: {names[base_urls][files]}")
+        with open(names[links][files], 'wb') as f:
+          print(f"Downloading: {names[links][files]}")
           f.write(download.content)
       else:
-        print(f"Download Failed For File {names[base_urls][files]}")
+        print(f"Download Failed For File {names[links][files]}")
