@@ -64,7 +64,10 @@ s11 = 'CACGAGACUGACUCUGAUCACACAUUGCUACUCCAAAACUO'
 # Fiz essa lista pra poder checar todas as listas de uma vez só
 seqs = [s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,s11]
 
-# is dna if sequence has only AGTC
+dna  = ['A', 'G', 'T', 'C']
+rna  = ['A', 'G', 'U', 'C']
+prot = ['A', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'Y']
+abc  = ['A','B','C','D','E','F','G','H','I','J','K','L','K','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
 
 def isdna_or_prot(sequence):
   return [True if x == 'b' else False for x in sequence]
