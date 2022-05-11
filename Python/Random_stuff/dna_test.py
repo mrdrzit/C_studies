@@ -39,15 +39,30 @@ s1 = 'ATCDLASKWNWNHTLCAAHCIARRYRGGYCNSKAVCVCRN'
 s2 = 'TATTAACCGGGTTTAAACTAGCATGCATGATTAACCAGTACATCTTTT'
 s3 = 'ATCBDLASKWXWNHTLCAAHCIARRYRGGYCNSJAVCVCRN'
 
+# Sequencias de dna que eu gerei aleatóriamente na internet pra testar: 
+# https://www.bioinformatics.org/sms2/random_dna.html
+# https://molbiotools.com/randomsequencegenerator.php
+s4 = 'ACTGGCGCCGAACTTTGGAAACGTGAGGGTTCGGAGAAGA'
+s5 = 'TTGAAACCGGAGTCATAACAGGAACGTCGCTTACTGATTA'
 
+# Sequencias de proteinas que eu gerei aleatóriamente na internet pra testar:
+# https://www.bioinformatics.org/sms2/random_dna.html
+# https://molbiotools.com/randomsequencegenerator.ph
+s6 = 'LNEKGILQYPQRYTEGFPWNPKNTYDFCMCPGITPRAYCT'
+s7 = 'MRVPFLMKLWCRPGWQAQPVNDYSQCRMRKSRYCFPIHGA'
 
-a = [1, 2, 3, 4, 5]
-b = [1, 2, 3, 4, 5]
+# Sequencias de rna que eu gerei aleatóriamente na internet pra testar:
+# https://www.bioinformatics.org/sms2/random_dna.html
+# https://molbiotools.com/randomsequencegenerator.ph
+s8 = 'CAUGGCAGAUUCGUCUUAACAAAAGGUAGCUCUAUGCGAG'
+s9 = 'CACGAGACUGACUCUGAUCACACAUUGCUACUCCAAAACU'
 
-dna  = ['A', 'G', 'T','C']
-rna  = ['A', 'G', 'U','C']
-prot = ['A', 'C', 'D','E', 'F', 'G', 'H', 'I', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'Y']
+# sequencias que eu peguei ali em cima e adicionei um "B" ou "O" no final
+s10 = 'CAUGGCAGAUUCGUCUUAACAAAAGGUAGCUCUAUGCGAGB'
+s11 = 'CACGAGACUGACUCUGAUCACACAUUGCUACUCCAAAACUO'
 
+# Fiz essa lista pra poder checar todas as listas de uma vez só
+seqs = [s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,s11]
 
 # is dna if sequence has only AGTC
 
