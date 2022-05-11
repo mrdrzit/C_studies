@@ -75,23 +75,7 @@ protein_negation = [item for item in prot if item not in dna]
 # Mesmo princípio aqui porém gerando uma lista onde as letras não estão em nenhuma das estruturas que a gente precisa 
 nothing = [item for item in abc if item not in prot and item not in rna]
 
-t = []
-for nt in range (0, len(rna)):
-  if dna[nt] == rna[nt]:
-    t.append(True)
-  else:
-    t.append(False)
-
-
-pdna = False
-pprot = False
-prna = False
-
-for x in s1:
-  if x == 'U':
-    prna = True
-  elif x == 'E':
-    pprot == True
-  else:
-    pdna == True
-
+# Loop simples pra poder gerar uma sequencia de respostas a partir da lista de teste que eu fiz ali em cima
+for x in range(0, len(seqs)):
+  what_is(seqs[x])
+pass
