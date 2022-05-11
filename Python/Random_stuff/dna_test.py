@@ -1,7 +1,6 @@
 def what_is(sequence):
   lastindex = 0 # Marcando o indice pra poder usar como referencia de final
 
-# ATCDLASKWNWNHTLCAAHCIARRYRGGYCNSKAVCVCRN
 
   # Aqui eu pego a lista inteira e faço uma checagem direta pra ver se tem alguma
   # letra inválida e, se tiver, já para o loop principal e fala que não é uma sequência válida
