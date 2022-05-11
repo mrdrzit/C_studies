@@ -69,11 +69,11 @@ rna  = ['A', 'G', 'U', 'C']
 prot = ['A', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'Y']
 abc  = ['A','B','C','D','E','F','G','H','I','J','K','L','K','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
 
-def isdna_or_prot(sequence):
-  return [True if x == 'b' else False for x in sequence]
+# Aqui eu faço uma filtragem, gerando uma lista que tem só as letras exclusivas das proteinas
+protein_negation = [item for item in prot if item not in dna]
 
-def isrna(sequence):
-  return [True if x == 'b' else False for x in sequence]
+# Mesmo princípio aqui porém gerando uma lista onde as letras não estão em nenhuma das estruturas que a gente precisa 
+nothing = [item for item in abc if item not in prot and item not in rna]
 
 t = []
 for nt in range (0, len(rna)):
