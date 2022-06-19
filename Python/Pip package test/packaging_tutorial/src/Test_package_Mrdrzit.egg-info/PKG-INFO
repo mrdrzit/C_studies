@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: Test-package-Mrdrzit
+Version: 0.0.1
+Summary: A small example package
+Home-page: https://github.com/mrdrzit/Behavython
+Author: Matheus C.
+Author-email: uzunaruto.10.mat@gmail.com
+Project-URL: Bug Tracker, https://github.com/mrdrzit/Behavython/issues
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
+## This is a pip package test
