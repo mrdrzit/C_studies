@@ -4,7 +4,7 @@
 
 // Fórmula >>> y(t) = Asin(2PI * f * t + PHI)
 
-let Fs = 1000;    // Amostragem
+let Fs = 2000;    // Amostragem
 let dt = 1 / Fs;    // seconds per sample
 let Time = 3;     // seconds
 let timeVector = (math.range(0, Time, dt));
