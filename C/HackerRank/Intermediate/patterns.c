@@ -39,7 +39,6 @@ void print_line(int *array, int line_size, int subtract, int which, int stop, in
 int main()
 {
     int n = 9;
-    // scanf("%d", &n);
     const int num_colunas = (n * 2) - 1;
 
     // Complete the code to print the pattern.
