@@ -16,18 +16,18 @@ the corresponding operation on your list.
 '''
 
 N = int(input("Numero de comandos: "))
-list = [None]*10000
+list = []
 for i in range(N):
   command = input("Digite o comando: ").split()
   if command[0] == 'insert':
-    exec('list' + '.' + command[0] + '(' + command[2] + ',' + command[1] + ')')
+    exec('list' + '.' + command[0] + '(' + command[1] + ',' + command[2] + ')')
   elif command[0] == 'print':
     exec('print' + '(' + 'list' + ')')
   elif command[0] == 'remove':
     exec('list' + '.' + command[0] + '(' + command[1] + ')')
   elif command[0] == 'append':
     exec('list' + '.' + command[0] + '(' + command[1] + ')')
-  elif command == 'sort':
+  elif command[0] == 'sort':
     exec('list' + '.' + command[0] + '(' + ')')
   elif command[0] == 'pop':
     exec('list' + '.' + command[0] + '(' + ')')
