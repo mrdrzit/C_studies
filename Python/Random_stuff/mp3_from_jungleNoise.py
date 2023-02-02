@@ -26,32 +26,24 @@ sourceB[8] = 'https://cdn.mynoise.net/Data/SUMATRA/8a'+fileExt
 sourceA[9] = 'https://cdn.mynoise.net/Data/SUMATRA/9b'+fileExt
 sourceB[9] = 'https://cdn.mynoise.net/Data/SUMATRA/9a'+fileExt
 
-os.chdir('C:\\Users\\uzuna\\Desktop\\')
-
-# doc = re.get(sourceB[4])
-# with open('myfile.mp3', 'wb') as f:
-#   f.write(doc.content)
+os.chdir('C:\\Users\\uzuna\\Downloads\\')
 
 with re.Session() as req:
-  idx = 0
-  musics = len(sourceB) + len(sourceA)
-
-  for music in musics:
-    if (idx > 9):
-      print(f"Downloading File {music}")
-      download = re.get(sourceA[idx])
-      idx += 1
-      if download.status_code == 200:
-        with open("ambienceA_"+str(idx)+".mp3", 'wb') as f:
-          f.write(download.content)
-      else:
-        print(f"Download Failed For File {music}")
+  musics = len(sourceA)
+  for music in range(0, musics-1):
+    print(f"Downloading File {sourceB[music]}")
+    print(f"Downloading File {sourceA[music]}")
+    downloadA = re.get(sourceA[music])
+    downloadB = re.get(sourceB[music])
+    if downloadA.status_code == 200:
+      with open("ambienceA_"+str(music)+".mp3", 'wb') as f:
+        f.write(downloadA.content)
     else:
-      print(f"Downloading File {music}")
-      download = re.get(sourceB[idx])
-      idx += 1
-      if download.status_code == 200:
-        with open("ambienceA_"+str(idx)+".mp3", 'wb') as f:
-          f.write(download.content)
-      else:
-        print(f"Download Failed For File {music}")
+      print(f"Download Failed For File {music}")
+    if downloadB.status_code == 200:
+      with open("ambienceB_"+str(music)+".mp3", 'wb') as f:
+        f.write(downloadB.content)
+    else:
+      print(f"Download Failed For File {music}")
+
+print("Finished!")
