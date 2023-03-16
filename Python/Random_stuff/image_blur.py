@@ -1,19 +1,20 @@
 from skimage.io import imread
 from matplotlib import pyplot as plt
 import numpy as np
+import skimage
 
 
 def paula_and_matheus_blur():
     ## Original code created during the conversation between Paula and me
 
     cat = imread(
-        r"C:\Users\uzuna\Documents\GITHUB\My_projects\Code_studies\Python\Random_stuff\umbrella.bmp"
+        r"C:\Users\uzuna\Documents\GITHUB\My_projects\Code_studies\Python\Random_stuff\cat.png"
     )
     pass
 
     KERNEL = [3, 3]
 
-    blurred_image = np.zeros((20, 20))
+    blurred_image = np.zeros(cat.shape)
 
     for iline, line in enumerate(cat):
         for icol, col in enumerate(cat):
@@ -33,6 +34,8 @@ def paula_and_matheus_blur():
         sharex=True,
         sharey=True,
     )
+
+    # blurred_machine = skimage.filters.gaussian(cat, sigma=1.5)
 
     fig.set_size_inches(7, 7)
     ax["Original Image"].imshow(cat, cmap="gray")
@@ -106,3 +109,6 @@ def chatgpt_blur():
 
     plt.show()
     pass
+
+
+paula_and_matheus_blur()
