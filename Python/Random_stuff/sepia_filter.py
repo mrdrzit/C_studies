@@ -15,12 +15,35 @@
     If tb > 255 then b = 255 else b = tb
 
 """
+from PIL import Image, ImageOps
+
 from skimage.io import imread
 from matplotlib import pyplot as plt
 import numpy as np
 
 cute_cat = imread(r"C:\Users\uzuna\Documents\GITHUB\My_projects\Code_studies\Python\Random_stuff\cute_cat.jpg")
-sepia_image = np.zeros(cute_cat.shape)
+image_path = r"C:\Users\uzuna\Documents\GITHUB\My_projects\Code_studies\Python\Random_stuff\cute_cat.jpg"
+sepia_image = np.zeros(cute_cat.shape, np.uint8)
+
+
+def apply_sepia_filter(image_path):
+    # Open the image
+    image = Image.open(image_path)
+
+    # Convert the image to grayscale
+    grayscale_image = ImageOps.grayscale(image)
+
+    # Apply sepia tone
+    sepia_tone = (87, 60, 40)
+    highlight_color = (255, 240, 192)
+    sepia_image_PIL = ImageOps.colorize(
+        grayscale_image,
+        sepia_tone,
+        highlight_color,
+    )
+
+    return sepia_image_PIL
+
 
 for iline, line in enumerate(cute_cat):
     for icol, col in enumerate(cute_cat):
@@ -50,22 +73,27 @@ for iline, line in enumerate(cute_cat):
             B = int((0.272 * R) + (0.534 * G) + (0.131 * B))
             sepia_image[iline, icol][2] = B
 
+# Example usage
+pillow_sepia = apply_sepia_filter(image_path)
 
 fig, ax = plt.subplot_mosaic(
-    [["Original Image", "Blurred_image"]],
+    [["Original Image", ".", "Sepia_image"], [".", "pillow_sepia", "."]],
     layout="constrained",
     sharex=True,
     sharey=True,
 )
 
 fig.set_size_inches(7, 7)
-ax["Original Image"].imshow(cute_cat, cmap="gray")
+ax["Original Image"].imshow(cute_cat)
 ax["Original Image"].set_title("Original Image", loc="center")
-ax["Blurred_image"].imshow(sepia_image, cmap="gray")
-ax["Blurred_image"].set_title("Blurred_image", loc="center")
-ax["Blurred_image"].set_xticks([])
-ax["Blurred_image"].set_yticks([])
+ax["Sepia_image"].imshow(sepia_image)
+ax["Sepia_image"].set_title("Sepia_image", loc="center")
+ax["pillow_sepia"].imshow(pillow_sepia)
+ax["pillow_sepia"].set_title("Sepia_image", loc="center")
+ax["Sepia_image"].set_xticks([])
+ax["Sepia_image"].set_yticks([])
 
 
 plt.draw()
+plt.show()
 plt.close()
