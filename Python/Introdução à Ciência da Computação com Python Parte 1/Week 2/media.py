@@ -6,5 +6,5 @@ nota1 = int(nota1)
 nota2 = int(nota2)
 nota3 = int(nota3)
 nota4 = int(nota4)
-media = (nota1+nota2+nota3+nota4)/4
-print("A média aritmética é",media)
+media = (nota1 + nota2 + nota3 + nota4) / 4
+print("A média aritmética é", media)
