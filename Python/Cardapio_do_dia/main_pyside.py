@@ -3,7 +3,7 @@ from PySide6.QtWidgets import (
     QButtonGroup, QTextEdit, QPushButton, QCalendarWidget, QWidget, QLabel, QHBoxLayout
 )
 from PySide6.QtCore import Qt, QDate
-from PySide6.QtGui import QIcon, QPixmap
+from PySide6.QtGui import QIcon
 import requests as re
 import sys
 import os 
