@@ -2,7 +2,7 @@ from PySide6.QtWidgets import (
     QApplication, QMainWindow, QVBoxLayout, QComboBox, QRadioButton,
     QButtonGroup, QTextEdit, QPushButton, QCalendarWidget, QWidget, QLabel, QHBoxLayout
 )
-from PySide6.QtCore import Qt, QDate
+from PySide6.QtCore import Qt, QDate, QThread, Signal
 from PySide6.QtGui import QIcon
 import requests as re
 import sys
@@ -14,17 +14,36 @@ restaurants = [
     {"id": 6, "nome": "RU Setorial I"}
 ]
 
+class MenuRequestThread(QThread):
+    menu_fetched = Signal(dict)
+    error_occurred = Signal(str)
+
+    def __init__(self, url):
+        super().__init__()
+        self.url = url
+
+    def run(self):
+        try:
+            response = re.get(self.url).json()
+            if response.get("cardapios"):
+                self.menu_fetched.emit(response)
+            else:
+                self.error_occurred.emit("Não há cardápio disponível para a data selecionada")
+        except re.exceptions.ConnectionError:
+            self.error_occurred.emit("Não foi possível conectar ao servidor da FUMP e obter o cardápio")
+
 class MenuApp(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("Pedir Cardápio")
+        self.setWindowTitle("Bandeco")
+        self.is_recess = False
 
         # Main widget and layout
         main_widget = QWidget()
 
         # Set maximum and minimum size for the window
-        self.setMinimumSize(380, 710)
-        self.setMaximumSize(380, 710)
+        self.setMinimumSize(380, 750)
+        self.setMaximumSize(380, 750)
 
         main_layout = QVBoxLayout()
         
@@ -79,6 +98,7 @@ class MenuApp(QMainWindow):
         self.calendar.setMaximumDate(next_sunday)
         self.calendar.setSelectedDate(current_date)
         self.calendar.setNavigationBarVisible(False)
+        self.calendar.setGridVisible(False)
 
         main_layout.addWidget(self.calendar)
 
@@ -89,7 +109,7 @@ class MenuApp(QMainWindow):
 
         # Button to request the menu
         request_button = QPushButton("Pedir cardápio")
-        request_button.setFixedSize(150, 40)  # Square button
+        request_button.setFixedSize(140, 30)  # Square button
         request_button.setStyleSheet("""
             QPushButton {
                 background-color: #555555;
@@ -112,6 +132,12 @@ class MenuApp(QMainWindow):
         button_layout.addStretch(1)
         button_layout.addWidget(request_button)
         button_layout.addStretch(1)
+        
+        # Create checkbox to toggle recess mode below the button
+        recess_checkbox = QRadioButton("Se for recesso, marque aqui para ver o cardápio do RU Setorial I")
+        recess_checkbox.setStyleSheet("color: white;")
+        recess_checkbox.toggled.connect(lambda: self.toggle_recess_mode())
+        main_layout.addWidget(recess_checkbox)
 
         # Add the button layout to the main layout
         main_layout.addLayout(button_layout)
@@ -123,26 +149,6 @@ class MenuApp(QMainWindow):
         # Apply dark theme and set Helvetica font
         self.setStyleSheet(
         """
-            QWidget {
-                font-family: Helvetica;
-                color: white;
-                background-color: #2e2e2e;
-            }
-            QComboBox, QRadioButton {
-                background-color: #444444;
-                border: 1px solid #666666;
-                padding: 5px;
-                font-weight: bold;
-            }
-            QComboBox::drop-down {
-                border-left: 1px solid #666666;
-            }
-            QTextEdit {
-                color: #ffffff;
-            }
-            QPushButton:hover {
-                background-color: #555555;
-            }
             QCalendarWidget {
                 background-color: #2b2b2b;
                 color: #d3d3d3;
@@ -152,30 +158,21 @@ class MenuApp(QMainWindow):
             /* Style the month/year navigation bar */
             QCalendarWidget QToolButton {
                 background-color: #3a3a3a;
-                color: #707070; /* Greyed out to indicate inactive */
+                color: #d3d3d3;
                 border: none;
                 margin: 5px;
                 padding: 5px;
             }
 
-            /* Disable interaction with navigation buttons by making them look inactive */
-            QCalendarWidget QToolButton:disabled {
-                color: #707070;
-            }
-            
-            /* Disable arrow indicators by removing images */
-            QCalendarWidget QToolButton::menu-indicator {
-                image: none;
-            }
-
-            /* Weekday names (top row) style */
+            /* Weekday header (Mon, Tue, ...) */
             QCalendarWidget QHeaderView::section {
                 background-color: #2b2b2b;
                 color: #d3d3d3;
                 padding: 5px;
+                font-weight: bold;
             }
 
-            /* Days in the calendar */
+            /* Calendar grid */
             QCalendarWidget QTableView {
                 font-size: 14px;
                 outline: 0;
@@ -184,7 +181,7 @@ class MenuApp(QMainWindow):
                 alternate-background-color: #3a3a3a;
             }
 
-            /* Disabled days styling */
+            /* Disabled days */
             QCalendarWidget QTableView::item:disabled {
                 color: #707070;
             }
@@ -193,6 +190,13 @@ class MenuApp(QMainWindow):
             QCalendarWidget QTableView::item:selected {
                 background-color: #5a5a5a;
                 color: #ffffff;
+            }
+
+            /* Style for weekends (Saturday and Sunday) */
+            QCalendarWidget QTableView::item:nth-child(7),  /* Sábado */
+            QCalendarWidget QTableView::item:nth-child(1) { /* Domingo */
+                color: red;
+                font-weight: bold;
             }
         """
         )
@@ -210,75 +214,71 @@ class MenuApp(QMainWindow):
         self.selected_meal = meal_type
 
     def pedir_cardapio(self):
-        # Disable the button to prevent multiple requests
-        self.findChild(QPushButton).setDisabled(True)
-        
-        # Get selected restaurant name and meal type
+        request_button = self.findChild(QPushButton)
+        request_button.setDisabled(True)
+
         restaurant_name = self.restaurant_menu.currentText()
-        restaurant_id = next((restaurant["id"] for restaurant in restaurants if restaurant["nome"] == restaurant_name), None)
+        restaurant_id = next((r["id"] for r in restaurants if r["nome"] == restaurant_name), None)
         meal = self.selected_meal
         selected_day = self.calendar.selectedDate().toString("yyyy-MM-dd")
-        
-        # Check for valid restaurant and meal availability
-        if restaurant_id == 1 and meal == "Jantar":
+
+        if restaurant_id == 1 and meal == "Jantar" and not self.is_recess:
             self.update_menu_display("Jantar apenas disponível para o RU Setorial I\nPedir cardápio para o almoço")
-            self.findChild(QPushButton).setDisabled(False)  # Re-enable the button
+            request_button.setDisabled(False)
             return
 
         if restaurant_id and selected_day:
             full_url = f"https://fump.ufmg.br:3003/cardapios/cardapio?id={restaurant_id}&dataInicio={selected_day}&dataFim={selected_day}"
+            self.menu_thread = MenuRequestThread(full_url)
 
-            try:
-                json_response = re.get(full_url).json()
-            except re.exceptions.ConnectionError:
-                self.update_menu_display("Não foi possível conectar ao servidor da FUMP e obter o cardápio")
-                self.findChild(QPushButton).setDisabled(False)  # Re-enable the button
-                return
+            self.menu_thread.menu_fetched.connect(self.process_menu_response)
+            self.menu_thread.error_occurred.connect(self.display_error)
 
-            if json_response['cardapios'] == []:
-                self.update_menu_display("Não há cardápio disponível para a data selecionada")
-                self.findChild(QPushButton).setDisabled(False)  # Re-enable the button
-                return
-            
-            # Extract and format the menu
-            menu = {}
-            for cardapio in json_response['cardapios']:
-                for refeicao in cardapio['refeicoes']:
-                    if refeicao['tipoRefeicao'] == meal:
-                        for prato in refeicao['pratos']:
-                            tipo = prato['tipoPrato']
-                            descricao = prato['descricaoPrato']
-                            if tipo not in menu:
-                                menu[tipo] = []
-                            menu[tipo].append(descricao)
+            self.menu_thread.start()
 
-            # Rename keys for readability
-            menu['Bebida'] = menu.pop('(um copo)', ['N/A'])
-            menu['Molho'] = menu.pop('Tipo de item não cadastrado', ['N/A'])
-            menu['Sobremesa'] = menu.pop('Sobremesa 1 (uma porção)', ['N/A'])
+    def process_menu_response(self, json_response):
+        menu = {}
+        for cardapio in json_response['cardapios']:
+            for refeicao in cardapio['refeicoes']:
+                if refeicao['tipoRefeicao'] == self.selected_meal:
+                    for prato in refeicao['pratos']:
+                        tipo = prato['tipoPrato']
+                        descricao = prato['descricaoPrato']
+                        if tipo not in menu:
+                            menu[tipo] = []
+                        menu[tipo].append(descricao)
 
-            # Set the meal order for display
-            meal_order = {
-                'Entrada': ['Entrada 1', 'Entrada 2'],
-                'Prato Principal': ['Acompanhamento 1', 'Acompanhamento 2', 'Prato protéico 1', 'Prato protéico 3', 'Guarnição', 'Molho'],
-                'Sobremesa': ['Sobremesa', 'Bebida']
-            }
+        menu['Bebida'] = menu.pop('(um copo)', ['N/A'])
+        menu['Molho'] = menu.pop('Tipo de item não cadastrado', ['N/A'])
+        menu['Sobremesa'] = menu.pop('Sobremesa 1 (uma porção)', ['N/A'])
 
-            # Format the menu text
-            display_text = ""
-            for section, items in meal_order.items():
-                display_text += f"<b>{meal} - {section}</b><br>"
-                for item in items:
-                    if item in menu:
-                        for desc in menu[item]:
-                            display_text += f"- {desc}<br>"
-                display_text += "<br>"
+        meal_order = {
+            'Entrada': ['Entrada 1', 'Entrada 2'],
+            'Prato Principal': ['Acompanhamento 1', 'Acompanhamento 2', 'Prato protéico 1', 'Prato protéico 3', 'Guarnição', 'Molho'],
+            'Sobremesa': ['Sobremesa', 'Bebida']
+        }
 
-            self.update_menu_display(display_text)
-            self.findChild(QPushButton).setDisabled(False)  # Re-enable the button
+        display_text = ""
+        for section, items in meal_order.items():
+            display_text += f"<b>{self.selected_meal} - {section}</b><br>"
+            for item in items:
+                if item in menu:
+                    for desc in menu[item]:
+                        display_text += f"- {desc}<br>"
+            display_text += "<br>"
+
+        self.update_menu_display(display_text)
+        self.findChild(QPushButton).setDisabled(False)
+
+    def display_error(self, message):
+        self.update_menu_display(message)
+        self.findChild(QPushButton).setDisabled(False)
 
     def update_menu_display(self, text):
         self.menu_display.setText(text)
+
+    def toggle_recess_mode(self):
+        self.is_recess = not self.is_recess
 
 app = QApplication(sys.argv)
 window = MenuApp()
